@@ -1,0 +1,30 @@
+@RELATION animals_dataset
+
+@ATTRIBUTE ‘Animal’ STRING
+@ATTRIBUTE ‘Pelo’ {false, true}
+@ATTRIBUTE ‘Penas’ {false, true}
+@ATTRIBUTE ‘Ovos’ {false, true}
+@ATTRIBUTE ‘Leite’ {false, true}
+@ATTRIBUTE ‘Aereo’ {false, true}
+@ATTRIBUTE ‘Aquatico’ {false, true}
+@ATTRIBUTE ‘Predador’ {false, true}
+@ATTRIBUTE ‘Dentes’ {false, true}
+@ATTRIBUTE ‘Vertebrado’ {false, true}
+@ATTRIBUTE ‘Respira’ {false, true}
+@ATTRIBUTE ‘Venenoso’ {false, true}
+@ATTRIBUTE ‘Barbatanas’ {false, true}
+@ATTRIBUTE ‘Pernas’ NUMERIC
+@ATTRIBUTE ‘Rabo’ {false, true}
+@ATTRIBUTE ‘Domestico’ {false, true}
+@ATTRIBUTE ‘Catsize’ {false, true}
+@ATTRIBUTE ‘Tipo’ {mammal, bird, reptile, fish, amphibian, insect, invertebrate}
+
+@DATA
+'aardvark',TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,4,TRUE,FALSE,TRUE,'mammal'
+'antílope',TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,FALSE,FALSE,4,TRUE,FALSE,TRUE,'mammal'
+'urso',TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,4,TRUE,FALSE,TRUE,'mammal'
+'javali',TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,4,TRUE,FALSE,TRUE,'mammal'
+'búfalo',TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,FALSE,FALSE,4,TRUE,FALSE,TRUE,'mammal'
+'vitela',TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,4,TRUE,FALSE,FALSE,'mammal'
+'carpa',FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,0,TRUE,TRUE,FALSE,'fish'
+'bagre',FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,FALSE,TRUE,FALSE,FALSE,TRUE,0,TRUE,FALSE,TRUE,'fish'

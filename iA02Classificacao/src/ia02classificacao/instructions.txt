@@ -1,0 +1,4 @@
+INSTRUÇÕES
+
+1) Iniciando o projeto, importe a biblioteca weka.jar na pasta Libraries do projeto (Botão Direto em Libraries, Adicionar Jar/Pasta e selecione o arquivo)
+2) Importe o arquivo arff. Passe para a opção pasta e crie uma nova pasta (data) na raiz do projeto, junto com as pastas nbproject e src. Arraste o arquivo para a pasta criada.
