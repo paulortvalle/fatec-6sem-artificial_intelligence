@@ -68,7 +68,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btn15" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="lblCassification" max="32767" attributes="0"/>
+                          <Component id="lblClassification" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -111,7 +111,7 @@
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lblCassification" max="32767" attributes="0"/>
+                  <Component id="lblClassification" max="32767" attributes="0"/>
                   <Component id="txtLegs" pref="50" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="60" max="32767" attributes="0"/>
@@ -165,6 +165,9 @@
           <Dimension value="[120, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn01ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btn02">
       <Properties>
@@ -180,6 +183,9 @@
           <Dimension value="[120, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn02ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btn03">
       <Properties>
@@ -195,6 +201,9 @@
           <Dimension value="[120, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn03ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btn04">
       <Properties>
@@ -210,6 +219,9 @@
           <Dimension value="[120, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn04ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btn05">
       <Properties>
@@ -225,6 +237,9 @@
           <Dimension value="[120, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn05ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btn06">
       <Properties>
@@ -240,6 +255,9 @@
           <Dimension value="[120, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn06ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btn07">
       <Properties>
@@ -255,6 +273,9 @@
           <Dimension value="[120, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn07ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btn08">
       <Properties>
@@ -270,6 +291,9 @@
           <Dimension value="[120, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn08ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btn09">
       <Properties>
@@ -285,6 +309,9 @@
           <Dimension value="[120, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn09ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btn10">
       <Properties>
@@ -300,6 +327,9 @@
           <Dimension value="[120, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn10ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btn11">
       <Properties>
@@ -315,6 +345,9 @@
           <Dimension value="[120, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn11ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btn13">
       <Properties>
@@ -330,6 +363,9 @@
           <Dimension value="[120, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn13ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btn14">
       <Properties>
@@ -345,6 +381,9 @@
           <Dimension value="[120, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn14ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btn15">
       <Properties>
@@ -360,6 +399,9 @@
           <Dimension value="[120, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn15ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -380,7 +422,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblCassification">
+    <Component class="javax.swing.JLabel" name="lblClassification">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="36" style="1"/>

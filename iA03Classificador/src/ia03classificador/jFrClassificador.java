@@ -6,6 +6,17 @@
 package ia03classificador;
 
 import javax.swing.JOptionPane;
+import weka.attributeSelection.AttributeSelection;
+import weka.attributeSelection.InfoGainAttributeEval;
+import weka.attributeSelection.Ranker;
+import weka.classifiers.trees.J48;
+import weka.core.DenseInstance;
+import weka.core.Instance;
+import weka.core.Instances;
+import weka.core.Utils;
+import weka.core.converters.ConverterUtils;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.Remove;
 
 /**
  *
@@ -13,8 +24,7 @@ import javax.swing.JOptionPane;
  */
 public class jFrClassificador extends javax.swing.JFrame {
     
-    private Double v00 = (double)0;
-    private Double v01, v02, v03, v04, v05, v06, v07, v08, v09, v10, v11, v13, v14, v15;
+    private Double v00, v01, v02, v03, v04, v05, v06, v07, v08, v09, v10, v11, v13, v14, v15;
     private String name, legs;
     
     /**
@@ -52,7 +62,7 @@ public class jFrClassificador extends javax.swing.JFrame {
         btn15 = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         txtLegs = new javax.swing.JTextField();
-        lblCassification = new javax.swing.JLabel();
+        lblClassification = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,84 +87,154 @@ public class jFrClassificador extends javax.swing.JFrame {
         btn01.setToolTipText("Penas");
         btn01.setMaximumSize(new java.awt.Dimension(30, 30));
         btn01.setMinimumSize(new java.awt.Dimension(120, 50));
+        btn01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn01ActionPerformed(evt);
+            }
+        });
 
         btn02.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn02.setText("Eggs");
         btn02.setToolTipText("Ovos");
         btn02.setMaximumSize(new java.awt.Dimension(30, 30));
         btn02.setMinimumSize(new java.awt.Dimension(120, 50));
+        btn02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn02ActionPerformed(evt);
+            }
+        });
 
         btn03.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn03.setText("Milk");
         btn03.setToolTipText("Leite");
         btn03.setMaximumSize(new java.awt.Dimension(30, 30));
         btn03.setMinimumSize(new java.awt.Dimension(120, 50));
+        btn03.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn03ActionPerformed(evt);
+            }
+        });
 
         btn04.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn04.setText("Airborne");
         btn04.setToolTipText("Aereo");
         btn04.setMaximumSize(new java.awt.Dimension(30, 30));
         btn04.setMinimumSize(new java.awt.Dimension(120, 50));
+        btn04.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn04ActionPerformed(evt);
+            }
+        });
 
         btn05.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn05.setText("Aquatic");
         btn05.setToolTipText("Aquatico");
         btn05.setMaximumSize(new java.awt.Dimension(30, 30));
         btn05.setMinimumSize(new java.awt.Dimension(120, 50));
+        btn05.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn05ActionPerformed(evt);
+            }
+        });
 
         btn06.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn06.setText("Predator");
         btn06.setToolTipText("Predador");
         btn06.setMaximumSize(new java.awt.Dimension(30, 30));
         btn06.setMinimumSize(new java.awt.Dimension(120, 50));
+        btn06.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn06ActionPerformed(evt);
+            }
+        });
 
         btn07.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn07.setText("Toothed");
         btn07.setToolTipText("Dentes");
         btn07.setMaximumSize(new java.awt.Dimension(30, 30));
         btn07.setMinimumSize(new java.awt.Dimension(120, 50));
+        btn07.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn07ActionPerformed(evt);
+            }
+        });
 
         btn08.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn08.setText("Backbone");
         btn08.setToolTipText("Vertebrado");
         btn08.setMaximumSize(new java.awt.Dimension(30, 30));
         btn08.setMinimumSize(new java.awt.Dimension(120, 50));
+        btn08.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn08ActionPerformed(evt);
+            }
+        });
 
         btn09.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn09.setText("Breathes");
         btn09.setToolTipText("Respira");
         btn09.setMaximumSize(new java.awt.Dimension(30, 30));
         btn09.setMinimumSize(new java.awt.Dimension(120, 50));
+        btn09.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn09ActionPerformed(evt);
+            }
+        });
 
         btn10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn10.setText("Venomous");
         btn10.setToolTipText("Venenoso");
         btn10.setMaximumSize(new java.awt.Dimension(30, 30));
         btn10.setMinimumSize(new java.awt.Dimension(120, 50));
+        btn10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn10ActionPerformed(evt);
+            }
+        });
 
         btn11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn11.setText("Fins");
         btn11.setToolTipText("Barbatanas");
         btn11.setMaximumSize(new java.awt.Dimension(30, 30));
         btn11.setMinimumSize(new java.awt.Dimension(120, 50));
+        btn11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn11ActionPerformed(evt);
+            }
+        });
 
         btn13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn13.setText("Tail");
         btn13.setToolTipText("Rabo");
         btn13.setMaximumSize(new java.awt.Dimension(30, 30));
         btn13.setMinimumSize(new java.awt.Dimension(120, 50));
+        btn13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn13ActionPerformed(evt);
+            }
+        });
 
         btn14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn14.setText("Domestic");
         btn14.setToolTipText("Doméstico");
         btn14.setMaximumSize(new java.awt.Dimension(30, 30));
         btn14.setMinimumSize(new java.awt.Dimension(120, 50));
+        btn14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn14ActionPerformed(evt);
+            }
+        });
 
         btn15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn15.setText("Catsize");
         btn15.setToolTipText("Ágil");
         btn15.setMaximumSize(new java.awt.Dimension(30, 30));
         btn15.setMinimumSize(new java.awt.Dimension(120, 50));
+        btn15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn15ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Legs:");
 
@@ -163,9 +243,9 @@ public class jFrClassificador extends javax.swing.JFrame {
         txtLegs.setMaximumSize(new java.awt.Dimension(150, 50));
         txtLegs.setMinimumSize(new java.awt.Dimension(150, 50));
 
-        lblCassification.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        lblCassification.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCassification.setToolTipText("Classification");
+        lblClassification.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblClassification.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblClassification.setToolTipText("Classification");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,7 +291,7 @@ public class jFrClassificador extends javax.swing.JFrame {
                                 .addComponent(btn14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btn15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblCassification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(lblClassification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -246,7 +326,7 @@ public class jFrClassificador extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblCassification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblClassification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtLegs, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
@@ -255,15 +335,124 @@ public class jFrClassificador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn00ActionPerformed
-        if (v00 == (double)0){
-            JOptionPane.showMessageDialog(null, "CLICADO");
-            v00 = (double)1;
-        } else {
-            JOptionPane.showMessageDialog(null, "nao clicado");
-            v00 = (double)0;
-        }
-        
+        try{
+            this.doClassificate(); 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro desconhecido");
+        }  
     }//GEN-LAST:event_btn00ActionPerformed
+
+    private void btn01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn01ActionPerformed
+        try{
+            this.doClassificate(); 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro desconhecido");
+        }
+    }//GEN-LAST:event_btn01ActionPerformed
+
+    private void btn02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn02ActionPerformed
+        try{
+            this.doClassificate(); 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro desconhecido");
+        }
+    }//GEN-LAST:event_btn02ActionPerformed
+
+    private void btn03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn03ActionPerformed
+        try{
+            this.doClassificate(); 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro desconhecido");
+        }
+    }//GEN-LAST:event_btn03ActionPerformed
+
+    private void btn04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn04ActionPerformed
+        try{
+            this.doClassificate(); 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro desconhecido");
+        }
+    }//GEN-LAST:event_btn04ActionPerformed
+
+    private void btn05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn05ActionPerformed
+        try{
+            this.doClassificate(); 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro desconhecido");
+        }
+    }//GEN-LAST:event_btn05ActionPerformed
+
+    private void btn06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn06ActionPerformed
+        try{
+            this.doClassificate(); 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro desconhecido");
+        }
+    }//GEN-LAST:event_btn06ActionPerformed
+
+    private void btn07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn07ActionPerformed
+        try{
+            this.doClassificate(); 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro desconhecido");
+        }
+    }//GEN-LAST:event_btn07ActionPerformed
+
+    private void btn08ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn08ActionPerformed
+        try{
+            this.doClassificate(); 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro desconhecido");
+        }
+    }//GEN-LAST:event_btn08ActionPerformed
+
+    private void btn09ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn09ActionPerformed
+        try{
+            this.doClassificate(); 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro desconhecido");
+        }
+    }//GEN-LAST:event_btn09ActionPerformed
+
+    private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
+        try{
+            this.doClassificate(); 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro desconhecido");
+        }
+    }//GEN-LAST:event_btn10ActionPerformed
+
+    private void btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn11ActionPerformed
+        try{
+            this.doClassificate(); 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro desconhecido");
+        }
+    }//GEN-LAST:event_btn11ActionPerformed
+
+    private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn13ActionPerformed
+        try{
+            this.doClassificate(); 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro desconhecido");
+        }
+    }//GEN-LAST:event_btn13ActionPerformed
+
+    private void btn14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn14ActionPerformed
+        try{
+            this.doClassificate(); 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro desconhecido");
+        } 
+    }//GEN-LAST:event_btn14ActionPerformed
+
+    private void btn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn15ActionPerformed
+        try{
+            this.doClassificate(); 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro desconhecido");
+        }
+    }//GEN-LAST:event_btn15ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,9 +487,91 @@ public class jFrClassificador extends javax.swing.JFrame {
                 new jFrClassificador().setVisible(true);
             }
         });
+        
+    
     }
     
-    public void doClassificate(){
+    public void doClassificate() throws Exception{
+        
+        // Quando clicado, a variavel recebe 1, quando não clicado recebe 0
+        v00 = ((btn00.isSelected()) ? ((double)1) : ((double)0));
+        v01 = ((btn01.isSelected()) ? ((double)1) : ((double)0));
+        v02 = ((btn02.isSelected()) ? ((double)1) : ((double)0));
+        v03 = ((btn03.isSelected()) ? ((double)1) : ((double)0));
+        v04 = ((btn04.isSelected()) ? ((double)1) : ((double)0));
+        v05 = ((btn05.isSelected()) ? ((double)1) : ((double)0));
+        v06 = ((btn06.isSelected()) ? ((double)1) : ((double)0));
+        v07 = ((btn07.isSelected()) ? ((double)1) : ((double)0));
+        v08 = ((btn08.isSelected()) ? ((double)1) : ((double)0));
+        v09 = ((btn09.isSelected()) ? ((double)1) : ((double)0));
+        v10 = ((btn10.isSelected()) ? ((double)1) : ((double)0));
+        v11 = ((btn11.isSelected()) ? ((double)1) : ((double)0));
+        v13 = ((btn13.isSelected()) ? ((double)1) : ((double)0));
+        v14 = ((btn14.isSelected()) ? ((double)1) : ((double)0));
+        v15 = ((btn15.isSelected()) ? ((double)1) : ((double)0));
+        legs = txtLegs.getText();
+        legs = ((legs == null || legs.trim().isEmpty() ? "2" : legs));
+        name = txtName.getText();
+        
+        // abre o banco de dados arff e guarda os registros no objeto dados
+        ConverterUtils.DataSource arquivo = new ConverterUtils.DataSource("data/zoo.arff");
+        Instances dados = arquivo.getDataSet();  
+        
+        // FILTER: remove o atributo nome do animal da classificação
+        String[] parametros = new String[]{"-R","1"};
+        Remove filtro = new Remove();
+        filtro.setOptions(parametros);
+        filtro.setInputFormat(dados);
+        dados = Filter.useFilter(dados, filtro);
+        
+        
+        AttributeSelection selAtributo = new AttributeSelection();
+        InfoGainAttributeEval avaliador = new InfoGainAttributeEval();
+        Ranker busca = new Ranker();
+        selAtributo.setEvaluator(avaliador);
+        selAtributo.setSearch(busca);
+        selAtributo.SelectAttributes(dados);
+        int[] indices = selAtributo.selectedAttributes();
+        //System.out.println("Selected attributes: " + Utils.arrayToString(indices));
+        
+        
+        // Usa o algoritimo J48 para montar a arvore de dados
+        String[] opcoes = new String[1];
+        opcoes[0] = "-U";
+        J48 arvore = new J48();
+        arvore.setOptions(opcoes);
+        arvore.buildClassifier(dados);
+        
+        // cria o novo elemento para comparação
+        double[] vals = new double[dados.numAttributes()];
+        vals[0] = v00; // hair
+        vals[1] = v01; // feathers
+        vals[2] = v02; // eggs
+        vals[3] = v03; // milk
+        vals[4] = v04; // airborne
+        vals[5] = v05; // aquatic
+        vals[6] = v06; // predator
+        vals[7] = v07; // toothed
+        vals[8] = v08; // backbone
+        vals[9] = v09; // breathes
+        vals[10] = v10; // venomous
+        vals[11] = v11; // fins
+        vals[12] = Double.parseDouble(legs); // legs
+        vals[13] = v13; // tail
+        vals[14] = v14; // domestic
+        vals[15] = v15; // catsize
+        
+        // Criar uma instância baseada nestes atributos
+        Instance newAnimal = new DenseInstance(1.0, vals);
+
+        // Adicionar a instância nos dados
+        newAnimal.setDataset(dados);
+
+        // Classificar esta nova instância
+        double label = arvore.classifyInstance(newAnimal);
+
+        // Imprimir o resultado da classificação
+        lblClassification.setText(dados.classAttribute().value((int) label));
     
     }
 
@@ -322,7 +593,7 @@ public class jFrClassificador extends javax.swing.JFrame {
     private javax.swing.JToggleButton btn15;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel lblCassification;
+    private javax.swing.JLabel lblClassification;
     private javax.swing.JTextField txtLegs;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
